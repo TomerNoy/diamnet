@@ -1,0 +1,39 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %} Jewelry {% endblock %}
+
+{% block content %}
+
+    <div class="container p-0" id="jewelry-list">
+
+        <div class="row align-items-center">
+            <div class="col-lg left-col">
+                <img class="img-fluid" src="{{ jewel.image }}" alt="...">
+
+            </div>
+            <div class="col-lg">
+                <div class="right-col">
+                    <h2>{{ jewel.stoneType }} {{ jewel.jewelryShape }}</h2>
+                    <p>{{ jewel.price }} $</p>
+                    <hr>
+                    <p>{{ jewel.metalColor }} {{ jewel.metalType }}</p>
+                    <hr>
+                    <p>{{ jewel.metalType }}</p>
+                    <hr>
+                    <p>{{ jewel.gender }}</p>
+                    <hr>
+                    <p>{{ jewel.date }}</p>
+                    <hr>
+                    <p>{{ jewel.stoneShape }}</p>
+                    <a class="btn btn-secondary text-light card-pointer" hx-post="{% url 'cart_add_htmx' %}"
+                       hx-target="#cart_index"
+                       hx-vals='{"id": "{{ jewel.id }}"}'
+                    >
+                        ADD TO BAG
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+:root {
+    --ff-primary: 'Lora', serif;
+    --ff-secondary: 'Roboto Slab', serif;
+
+    --fw-reg: 400;
+    --fw-bold: 700;
+
+    --col1: #000000;
+    --col2: #14213d;
+    --col3: #fca311;
+    --col4: #e5e5e5;
+    --col5: #ffffff;
+
+    --bg-trans-white: rgba(255, 255, 255, 0.35);
+    --bg-trans-white2: rgba(255, 255, 255, 0.85);
+    --bg-trans-orange: rgba(252, 163, 17, 0.55);
+    --bg-trans-blue: rgba(20, 33, 61, 0.75);
+    --bg-trans-pressed: rgba(252, 163, 17, 0.35);
+    --bg-trans-red: rgba(255, 0, 0, 0.50);
+
+    --bs: 0.25em 0.25em 0.75em rgba(0, 0, 0, 0.25),
+    0.125em 0.125em 0.25em rgba(0, 0, 0, 0.15);
+}
+
+html * {
+    scroll-behavior: smooth;
+    /*font-size: 1em !important;*/
+    color: #000 !important;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+body {
+    margin-top: 60px;
+    margin-bottom: 200px;
+}
+
+/*navbar-------------------------------------*/
+.navbar {
+    background-color: var(--bg-trans-white2);
+}
+
+#is_logged_in {
+    font-size: 13px;
+    margin: 8px;
+}
+
+.jumbotron {
+    background-image: url('https://images.unsplash.com/photo-1531995811006-35cb42e1a022?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80');
+    background-size: cover;
+    background-blend-mode: multiply;
+    height: 400px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.home-models img {
+    display: block;
+    max-height: 500px;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+}
+
+.card-pointer:hover {
+    cursor: pointer;
+}
+
+/*Jewelry-------------------------------------*/
+
+.panel {
+    padding: 30px 5px 30px 5px;
+}
+
+.shape_box {
+    font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+    transition: 0.3s;
+    margin: 0;
+    padding: 0;
+}
+
+
+.type_box {
+    /*background-color: #e5e5e5;*/
+    margin: clamp(3px, 1vw, 16px);
+}
+
+#vertical_text {
+    transform: rotate(180deg);
+    background-color: var(--bg-trans-orange);
+    writing-mode: vertical-rl;
+    color: var(--col2);
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin: 0;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.shape_box:hover, .type_box:hover, .pressed {
+    /*outline: 1px solid var(--bg-trans-orange);*/
+    background-color: var(--bg-trans-pressed);
+    outline-offset: -5px;
+    box-shadow: 0 3px clamp(5px, 4vw, 50px) 0 rgba(0, 0, 0, 0.2);
+}
+
+
+/*stock*/
+.stock {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-rows: repeat(3, 1fr);
+    margin: 0;
+    padding: 30px;
+    grid-gap: 1rem;
+    justify-items: center;
+}
+
+
+.jewel_box {
+    width: 15rem;
+    height: 22rem;
+    transition: opacity 0.25s ease-in-out;
+}
+
+.jewel_box:hover {
+    opacity: .7;
+}
+
+.jewel_box img {
+    object-fit: scale-down;
+    height: 100%;
+    width: 100%;
+}
+
+
+/*jewel---------------------------------*/
+
+.left-col img {
+    /*width: clamp(80%, 80vw, 100vw);*/
+}
+
+.card-pointer {
+    /*background-color: var(--col2);*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+}
+
+/*cart---------------------------------*/
+tr.htmx-swapping td {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+/*footer---------------------------------*/
+footer {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    background-color: var(--bg-trans-blue);
+}
+
+
+footer ul {
+    margin: 0 auto;
+}
+
+footer ul > li {
+    display: inline-block;
+    margin: 0 1rem 0 1rem;
+    zoom: 1;
+    *display: inline;
+}
+
+footer i {
+    color: white !important;
+    font-size: 2rem;
+}
+

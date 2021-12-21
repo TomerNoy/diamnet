@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bolder" href="{% url 'home' %}">DIAMNET</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+
+            </span>
+        </button>
+
+        <div class="collapse navbar-collapse nav" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'jewelry_htmx' %}">JEWELRY</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}">ABOUT</a>
+                </li>
+
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                    <p class="nav-item" id="is_logged_in">logged in </p>
+                {% else %}
+                    <p class="nav-item" id="is_logged_in"> logged out</p>
+                {% endif %}
+                <li class="nav-item">
+                    <a href='{% if user.is_authenticated %}{% url 'profile' %}{% else %}{% url 'login' %}{% endif %}'
+                       class="nav-link"> <i class="far fa-user fa-lg"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href=" {% url 'cart' %}" class="nav-link">
+                        <i class="fas fa-shopping-bag fa-lg position-relative">
+                            <div id="cart_index">
+
+                            </div>
+                        </i>
+                    </a>
+
+                </li>
+                <li class="nav-item">
+                    <a href="{% if user.is_authenticated %}{% url 'logout' %}{% else %}{% url 'login' %}{% endif %}"
+                       class="nav-link">
+                        <i class="{% if user.is_authenticated %} fas fa-sign-out-alt fa-lg {% else %} fas fa-sign-in-alt fa-lg {% endif %}"></i>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>

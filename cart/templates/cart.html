@@ -1,0 +1,76 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% block title %} Cart {% endblock %}
+
+{% block content %}
+    <div class="container align-center col-8 offset-2">
+        <table class="table table-hover  text-center">
+            <tr class="text-center">
+                <th></th>
+                <th class="text-start">Item</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+            {% for jewl in cart.jewelries.all %}
+                <tr hx-target="closest tr" hx-swap="outerHTML swap:1s">
+                    <td>{{ forloop.counter }}</td>
+                    <td class="text-start">
+                        {{ jewl }}
+                    </td>
+                    <td>{{ jewl.price }}</td>
+                    <td>
+                        <a hx-delete="{% url 'cart_del_htmx' cart.id jewl.id %}" class="text-danger">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan=3> You have not added any items yet.</td>
+                </tr>
+            {% endfor %}
+
+            <tr>
+                {% if cart.get_cart_total != None %}
+                    <td colspan=2 class="text-end">
+                        <strong>Total:</strong>
+                    </td>
+
+                    <td>
+                        $<strong>{{ cart.get_cart_total }}</strong>
+                    </td>
+                    <td>
+                    </td>
+                {% endif %}
+            </tr>
+            <tr>
+                {#            <tr>#}
+                {#                {% if order.get_cart_total != None %}#}
+                {#                    <td colspan=2>#}
+                {#                        <strong class="pull-right">Order Total:</strong>#}
+                {#                    </td>#}
+                {##}
+                {#                    <td colspan=1>#}
+                {#                        $<strong>{{ order.get_cart_total }}</strong>#}
+                {#                    </td>#}
+                {#                {% endif %}#}
+                {#            </tr>#}
+                {#            <tr>#}
+                {#                <td colspan=1>#}
+                {#                    <a href="#" class="btn btn-warning pull-left">#}
+                {#                        {% if order %}Continue Shopping{% else %}Add Items to Cart {% endif %}#}
+                {#                    </a>#}
+                {#                </td>#}
+                {#                <td colspan=2>#}
+                {#                    {% if order.get_cart_items %}#}
+                {#                        <a href="#" class="pull-right btn btn-primary">Proceed To Checkout</a>#}
+                {#                    {% endif %}#}
+                {#                </td>#}
+                {#            </tr>#}
+        </table>
+
+    </div>
+
+{% endblock %}

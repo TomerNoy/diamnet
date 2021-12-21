@@ -1,0 +1,101 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block title %} Jewelry {% endblock %}
+
+{% block content %}
+
+    <div class="container p-0" id="jewelry-list">
+
+        <div class="panel">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <div class="row">
+                        {% for shape in shapes_available %}
+                            <a href="#" class="card col-3 shape_box"
+                               hx-post="{% url 'jewelry_htmx' %}"
+                               hx-target="#jewelry-list"
+                               hx-vals='{"shape_pressed": "{{ shape }}", "stone_types_displayed": "{{ stone_types_displayed }}", "shapes_displayed": "{{ shapes_displayed }}"}'
+                            >
+                                <img class="card-img" src="{% static 'assets/jewls/'|add:shape|add:'.jpg' %}"
+                                     id="shape_img"
+                                     alt="...">
+                                <div class="{% if shape|stringformat:'s' in shapes_displayed %} pressed {% endif %} card-img-overlay">
+                                    <p id="vertical_text">{{ shape }}</p>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="col-sm">
+                    <div class="row">
+                        {% for type in stone_types_available %}
+                            <a class="col btn {% if type|stringformat:'s' in stone_types_displayed %} pressed {% endif %} type_box border"
+                               hx-post="{% url 'jewelry_htmx' %}"
+                               hx-target="#jewelry-list"
+                               hx-vals='{"stone_type_pressed": "{{ type }}", "stone_types_displayed": "{{ stone_types_displayed }}", "shapes_displayed": "{{ shapes_displayed }}"}'>
+                                {{ type }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {#        <div class="row">#}
+        {#            {% for shape in shapes_available %}#}
+        {#                <a class="card col-2 shape_box" hx-post="{% url 'jewelry_htmx' %}"#}
+        {#                   hx-target="#jewelry-list"#}
+        {#                   hx-vals='{"shape_pressed": "{{ shape }}", "stone_types_displayed": "{{ stone_types_displayed }}", "shapes_displayed": "{{ shapes_displayed }}"}'>#}
+        {#                    <img class="card-img" src="{% static 'assets/'|add:shape|add:'.webp' %}" id="shape_img"#}
+        {#                         alt="...">#}
+        {#                    <div class="{% if shape|stringformat:'s' in shapes_displayed %} pressed {% endif %} card-img-overlay">#}
+        {#                        <p id="vertical_text">{{ shape }}</p>#}
+        {#                    </div>#}
+        {#                </a>#}
+        {#            {% endfor %}#}
+        {#        </div>#}
+        {##}
+        {#        <div class="row justify-content-md-start">#}
+        {#            {% for type in stone_types_available %}#}
+        {#                <a class="col-auto btn {% if type|stringformat:'s' in stone_types_displayed %} pressed {% endif %} type_box"#}
+        {#                   hx-post="{% url 'jewelry_htmx' %}"#}
+        {#                   hx-target="#jewelry-list"#}
+        {#                   hx-vals='{"stone_type_pressed": "{{ type }}", "stone_types_displayed": "{{ stone_types_displayed }}", "shapes_displayed": "{{ shapes_displayed }}"}'>#}
+        {#                    {{ type }}#}
+        {#                </a>#}
+        {#            {% endfor %}#}
+        {#        </div>#}
+
+        <div class="stock">
+            {% for jewel in jewelries %}
+
+                {#                <div class="card" style="width: 18rem;">#}
+                {#                    <img src="..." class="card-img-top" alt="...">#}
+                {#                    <div class="card-body">#}
+                {#                        <h5 class="card-title">Card with stretched link</h5>#}
+                {#                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of#}
+                {#                            the card's content.</p>#}
+                {#                        <a href="#" class="btn btn-primary stretched-link">Go somewhere</a>#}
+                {#                    </div>#}
+                {#                </div>#}
+
+                <div class="card jewel_box">
+                    <img src="{{ jewel.image }}" alt="...">
+                    <div class="card-body">
+                        <small class="card-text">{{ jewel.stoneType }} {{ jewel.jewelryShape }}
+                            {% if jewel.stoneShape|stringformat:'s' != 'Other' %}
+                                {{ jewel.stoneShape }}
+                            {% endif %}
+                        </small>
+                        <small class="card-text">{{ jewel.metalType }} {{ jewel.metalColor }} #{{ jewel.id }}</small>
+                        <a href="{% url 'jewel' jewel.id %}" class="stretched-link"></a>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between"> {{ jewel.price }} $</div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
