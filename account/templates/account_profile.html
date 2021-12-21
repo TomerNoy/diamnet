@@ -5,6 +5,19 @@
 
 {% block content %}
 
-    Profile
+    <div class="container">
+        <h1> My Account </h1>
+        <hr>
+        <h4> Personal Information</h4>
+        <div hx-target="this" hx-swap="outerHTML">
+            <div><label>User Name</label>: {{ user.username }}</div>
+            <div><label>Email</label>: {{ user.email }}</div>
+            <button hx-get="/contact/1/edit" class="btn btn-primary">
+                Click To Edit
+            </button>
+        </div>
+    </div>
+
+
 
 {% endblock %}

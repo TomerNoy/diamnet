@@ -11,9 +11,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
-from .local_settings import SECRET_KEY, DATABASES, BASE_DIR
-import django_heroku
+# from .local_settings import SECRET_KEY, DATABASES, BASE_DIR
 
+import django_heroku
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
@@ -22,6 +23,8 @@ import django_heroku
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 ALLOWED_HOSTS = []
 
@@ -75,6 +78,9 @@ WSGI_APPLICATION = 'JewelryProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+DATABASES = {
+    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -117,8 +123,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-django_heroku.settings(locals())
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -126,3 +130,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+try:
+    from .local_settings import *
+except ImportError:
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+
+django_heroku.settings(locals())
