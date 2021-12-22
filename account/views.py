@@ -59,6 +59,8 @@ def check_username(request):
     username = request.POST.get('username')
     if get_user_model().objects.filter(username=username).exists():
         return HttpResponse("<div style='color:#e76f51;'>This name is already taken<div>")
+    elif username == '':
+        return HttpResponse('')
     else:
         return HttpResponse("<div style='color:#2a9d8f;'>This name is available<div>")
 

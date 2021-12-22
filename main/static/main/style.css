@@ -60,7 +60,9 @@ body {
     height: 400px;
     background-position: center center;
     background-repeat: no-repeat;
+    /*background-color: white;*/
 }
+
 
 .home-models img {
     display: block;
@@ -75,7 +77,6 @@ body {
 }
 
 /*Jewelry-------------------------------------*/
-
 .panel {
     padding: 30px 5px 30px 5px;
 }
@@ -128,13 +129,13 @@ body {
 .jewel_box {
     width: 15rem;
     height: 22rem;
-
 }
 
 .jewel_box img {
     object-fit: scale-down;
     height: 100%;
     width: 100%;
+    max-height: 13rem;
 }
 
 .card-pointer, .jewel_box {
