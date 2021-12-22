@@ -4,73 +4,87 @@
 {% block title %} Cart {% endblock %}
 
 {% block content %}
-    <div class="container align-center col-8 offset-2">
-        <table class="table table-hover  text-center">
-            <tr class="text-center">
-                <th></th>
-                <th class="text-start">Item</th>
-                <th>Price</th>
-                <th></th>
-            </tr>
-            {% for jewl in cart.jewelries.all %}
-                <tr hx-target="closest tr" hx-swap="outerHTML swap:1s">
-                    <td>{{ forloop.counter }}</td>
-                    <td class="text-start">
-                        {{ jewl }}
-                    </td>
-                    <td>{{ jewl.price }}</td>
-                    <td>
-                        <a hx-delete="{% url 'cart_del_htmx' cart.id jewl.id %}" class="text-danger">
-                            <i class="fas fa-trash"></i>
-                        </a>
-                    </td>
+    <div class="container align-center col-10 pt-5">
+        <h1 class="text-center">My Cart</h1>
 
+        {% if cart.get_cart_total == 0 or cart.get_cart_total == None%}
+
+            <p class="text-center"> Cart is empty <span>
+            <a href="{% url 'jewelry_htmx' %}" class="btn btn-warning ms-3"> Add Items to Cart </a>
+            </span></p>
+
+        {% else %}
+
+            <table class="table table-hover  text-center">
+                <tr class="text-center">
+                    <th style="width: 3rem;"></th>
+                    <th class="text-start col-5">Item</th>
+                    <th class="text-center col-2">Price</th>
+                    <th style="width: 3rem;"></th>
                 </tr>
-            {% empty %}
-                <tr>
-                    <td colspan=3> You have not added any items yet.</td>
+                {% for jewl in cart.jewelries.all %}
+                    <tr hx-target="closest tr" hx-swap="outerHTML swap:1s">
+                        <td>{{ forloop.counter }}</td>
+                        <td class="text-start">
+                            {{ jewl }}
+                        </td>
+                        <td>$ {{ jewl.price }}</td>
+                        <td>
+                            <a onclick="window.setTimeout(function(){location.reload()},500)"
+                               hx-delete="{% url 'cart_del_htmx' cart.id jewl.id %}" class="text-danger">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                <tr style="border-top: 2px solid darkgray">
+                    <td></td>
+
+                    <td class="text-start fw-bolder">
+                        Order Total:
+                    </td>
+
+                    <td>
+                        $ <strong>{{ cart.get_cart_total }}</strong>
+                    </td>
+                    <td>
+                    </td>
                 </tr>
-            {% endfor %}
+            </table>
+            <div class="row justify-content-end p-5">
+                <div class="col-auto">
+                <a href="#" class="col btn btn-secondary text-light">Proceed To Checkout</a>
+                </div>
+            </div>
+        {% endif %}
 
-            <tr>
-                {% if cart.get_cart_total != None %}
-                    <td colspan=2 class="text-end">
-                        <strong>Total:</strong>
-                    </td>
-
-                    <td>
-                        $<strong>{{ cart.get_cart_total }}</strong>
-                    </td>
-                    <td>
-                    </td>
-                {% endif %}
-            </tr>
-            <tr>
-                {#            <tr>#}
-                {#                {% if order.get_cart_total != None %}#}
-                {#                    <td colspan=2>#}
-                {#                        <strong class="pull-right">Order Total:</strong>#}
-                {#                    </td>#}
-                {##}
-                {#                    <td colspan=1>#}
-                {#                        $<strong>{{ order.get_cart_total }}</strong>#}
-                {#                    </td>#}
-                {#                {% endif %}#}
-                {#            </tr>#}
-                {#            <tr>#}
-                {#                <td colspan=1>#}
-                {#                    <a href="#" class="btn btn-warning pull-left">#}
-                {#                        {% if order %}Continue Shopping{% else %}Add Items to Cart {% endif %}#}
-                {#                    </a>#}
-                {#                </td>#}
-                {#                <td colspan=2>#}
-                {#                    {% if order.get_cart_items %}#}
-                {#                        <a href="#" class="pull-right btn btn-primary">Proceed To Checkout</a>#}
-                {#                    {% endif %}#}
-                {#                </td>#}
-                {#            </tr>#}
-        </table>
 
     </div>
 
 {% endblock %}
+
+
+{#                <tr>#}
+{##}
+{#                    <td colspan=2>#}
+{#                        <strong class="pull-right">Order Total:</strong>#}
+{#                    </td>#}
+{##}
+{#                    <td colspan=1>#}
+{#                        $<strong>{{ order.get_cart_total }}</strong>#}
+{#                    </td>#}
+{##}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td colspan=1>#}
+{#                        <a href="#" class="btn btn-warning pull-left">#}
+{#                            {% if order %}Continue Shopping{% else %}Add Items to Cart {% endif %}#}
+{#                        </a>#}
+{#                    </td>#}
+{#                    <td colspan=2>#}
+{#                        {% if order.get_cart_items %}#}
+{#                            <a href="#" class="pull-right btn btn-primary">Proceed To Checkout</a>#}
+{#                        {% endif %}#}
+{#                    </td>#}
+{#                </tr>#}

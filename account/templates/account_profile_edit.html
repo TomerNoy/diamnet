@@ -1,11 +1,9 @@
 {% extends 'partials/base.html' %}
-{% block title %}
-    Profile
-{% endblock %}
+{% block title %} Profile {% endblock %}
 
 {% block content %}
 
-    <div hx-target="this" hx-swap="outerHTML">
+    <form hx-put="{% url 'profile' %}" hx-target="this" hx-swap="outerHTML">
         <div class="container p-5">
             <h1> My Account </h1>
             <hr>
@@ -16,8 +14,7 @@
                     <label for="username" class="col-form-label">User Name</label>
                 </div>
                 <div class="col-4">
-                    <input id="username" class="form-control " type="text" name="username" value="{{ user.username }}"
-                           disabled>
+                    <input id="username" class="form-control" type="text" name="username" value="{{ user.username }}">
                 </div>
             </div>
             <br>
@@ -26,14 +23,13 @@
                     <label for="email" class="col-form-label">Email</label>
                 </div>
                 <div class="col-4">
-                    <input id="email" class="form-control" type="email" name="email" value="{{ user.email }}" disabled>
+                    <input id="email" class="form-control" type="email" name="email" value="{{ user.email }}">
                 </div>
             </div>
             <br>
-            <button hx-get="{% url 'profile_edit' %}" class="btn btn-secondary text-light">
-                Click To Edit
-            </button>
+            <button class="btn btn-secondary text-light" hx-get="{% url 'profile' %}">Cancel</button>
+            <button class="btn btn-secondary text-light">Submit</button>
         </div>
-    </div>
+    </form>
 
 {% endblock %}

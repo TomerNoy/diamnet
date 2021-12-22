@@ -1,10 +1,66 @@
 {% extends 'partials/base.html' %}
-{% block title %}
-    About
-{% endblock %}
+{% block title %} About {% endblock %}
+{% load static %}
 
 {% block content %}
 
-    About
+    <div class="container p-5 about">
+        <h1 class="text-center">WHO WE ARE</h1>
+        <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus aliquam amet consectetur
+            culpa
+            expedita incidunt, inventore ipsa libero magni maiores mollitia omnis optio possimus, quas qui, quod rem
+            temporibus.</p>
+        <div id="carouselLightID" class="col-md carousel carousel-light slide"
+             data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselLight" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselLight" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselLight" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="10000">
+                    <img src="{% static 'assets/about/w1.webp' %}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img src="{% static 'assets/about/w2.jpg' %}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'assets/about/w3.jpg' %}" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselLightID"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselLightID"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <h1 class="text-center m-5">OUR MISSION</h1>
+
+        <p class="clearfix"><img id="mission-img" src="{% static 'assets/about/o2.jpeg' %}" class="img-fluid" alt="...">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium
+            commodi,
+            deserunt dolores ex
+            hic ipsa iusto maxime nemo nihil omnis perspiciatis possimus quasi quis sed veritatis vitae voluptatibus?
+            Velit!
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium
+            commodi.
+        </p>
+
+        <h1 class="text-center m-5">OUR PRODUCTS</h1>
+        <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur dolorem ea enim
+            exercitationem facere
+            nisi nobis, vero vitae. Dolor dolorem maxime molestias nemo officiis optio placeat possimus quae sit!
+            Laborum!</p>
+
+    </div>
 
 {% endblock %}

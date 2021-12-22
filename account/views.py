@@ -5,9 +5,23 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
 from account.forms import SignupForm
+from urllib.parse import unquote
+from urllib.parse import urlparse
+from urllib.parse import parse_qs
 
 
 def profile_view(request):
+    # print(request.body.decode(encoding='UTF-8'))
+    try:
+        params = request.body.decode(encoding='UTF-8').split('&')
+        username = params[0].split('=')[1]
+        email = params[1].split('=')[1]
+        request.user.username = unquote(username)
+        request.user.email = unquote(email)
+        request.user.save()
+    except:
+        pass
+
     context = {}
     return render(request, 'account_profile.html', context)
 
@@ -53,3 +67,7 @@ def test(request):
     payload = request.GET.get('payload')
 
     return HttpResponse(f'<div class="card">you chose a {payload}</div>')
+
+
+def profile_edit_view(request):
+    return render(request, 'account_profile_edit.html', {})

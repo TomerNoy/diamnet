@@ -24,11 +24,11 @@
         <h1 class="text-center m-5">Beautiful Jewelry For Every Day</h1>
 
         <div class="row home-models">
-            <div id="carouselExampleDarkLeft" class="col-md carousel carousel-dark slide" data-bs-ride="carousel">
+            <div id="carouselLeft" class="col-md carousel carousel-dark slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleDarkLeft" data-bs-slide-to="0" class="active"
+                    <button type="button" data-bs-target="#carouselLeft" data-bs-slide-to="0" class="active"
                             aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleDarkLeft" data-bs-slide-to="1"
+                    <button type="button" data-bs-target="#carouselLeft" data-bs-slide-to="1"
                             aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
                             aria-label="Slide 3"></button>
@@ -56,25 +56,25 @@
                         </div>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDarkLeft"
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselLeft"
                         data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDarkLeft"
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselLeft"
                         data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
 
-            <div id="carouselExampleDarkRight" class="col-md carousel carousel-dark slide" data-bs-ride="carousel">
+            <div id="carouselRight" class="col-md carousel carousel-dark slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleDarkRight" data-bs-slide-to="0" class="active"
+                    <button type="button" data-bs-target="#carouselRight" data-bs-slide-to="0" class="active"
                             aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleDarkRight" data-bs-slide-to="1"
+                    <button type="button" data-bs-target="#carouselRight" data-bs-slide-to="1"
                             aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleDarkRight" data-bs-slide-to="2"
+                    <button type="button" data-bs-target="#carouselRight" data-bs-slide-to="2"
                             aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
@@ -100,12 +100,12 @@
                         </div>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDarkRight"
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselRight"
                         data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDarkRight"
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselRight"
                         data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
@@ -118,7 +118,6 @@
             <div class="col-lg">
                 <div class="row">
                     {% for jewel in jewels %}
-
                         <div class="card col-sm p-0 card-pointer">
                             <form method="post" action="{% url 'jewelry_htmx' %}" onclick='this.submit()'>
                                 {% csrf_token %}
@@ -153,19 +152,22 @@
                 </div>
             </div>
         </div>
+        <br>
 
-        <h4 class="m-5 text-center">Keep In Touch For New Offers</h4>
-        <div class="row justify-content-md-center">
-            <div class="col-md-auto">
-                <label for="inputPassword6" class="col-form-label">Email</label>
+        <form>
+            <h4 class="m-5 text-center">Keep In Touch For New Products</h4>
+            <div class="container" style="max-width: 600px">
+                <div class="row">
+                    <div class="col-sm g-3">
+                        <input type="email" id="email" class="form-control" aria-describedby="email" placeholder="email"
+                               required>
+                    </div>
+                    <div class="col-auto g-3">
+                        <button type="submit" class="btn btn-secondary text-light">Subscribe</button>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-auto">
-                <input type="email" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-            </div>
-            <div class="col-md-auto">
-                <button type="submit" class="btn btn-secondary text-light">Subscribe</button>
-            </div>
-        </div>
+        </form>
     </div>
 
 {% endblock %}

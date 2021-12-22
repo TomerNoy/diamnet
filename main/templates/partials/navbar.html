@@ -1,6 +1,12 @@
+{% load static %}
+
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand fw-bolder" href="{% url 'home' %}">DIAMNET</a>
+        <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+            <img class=" p-0 mb-1 me-1" src="{% static 'assets/logo.png' %}" width="30" height="30">
+            <h5 class="fw-bolder  m-0 p-0"> DIAMNET</h5>
+        </a>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon">
@@ -11,7 +17,7 @@
         <div class="collapse navbar-collapse nav" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'jewelry_htmx' %}">JEWELRY</a>
+                    <a class="nav-link " href="{% url 'jewelry_htmx' %}">JEWELRY</a>
                 </li>
 
                 <li class="nav-item">

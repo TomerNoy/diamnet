@@ -40,7 +40,7 @@ html * {
 
 body {
     margin-top: 60px;
-    margin-bottom: 200px;
+    margin-bottom: 150px;
 }
 
 /*navbar-------------------------------------*/
@@ -54,7 +54,7 @@ body {
 }
 
 .jumbotron {
-    background-image: url('https://images.unsplash.com/photo-1531995811006-35cb42e1a022?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80');
+    background-image: url('/static/assets/bg/bg.jpg');
     background-size: cover;
     background-blend-mode: multiply;
     height: 400px;
@@ -128,11 +128,7 @@ body {
 .jewel_box {
     width: 15rem;
     height: 22rem;
-    transition: opacity 0.25s ease-in-out;
-}
 
-.jewel_box:hover {
-    opacity: .7;
 }
 
 .jewel_box img {
@@ -141,18 +137,46 @@ body {
     width: 100%;
 }
 
-
-/*jewel---------------------------------*/
-
-.left-col img {
-    /*width: clamp(80%, 80vw, 100vw);*/
+.card-pointer, .jewel_box {
+    transition: opacity 0.25s ease-in-out;
 }
 
-.card-pointer {
-    /*background-color: var(--col2);*/
-    /*display: flex;*/
-    /*flex-direction: column;*/
+.card-pointer:hover, .jewel_box:hover {
+    opacity: .7;
 }
+
+/*about---------------------------------*/
+
+.about p {
+    font-size: 1.3rem;
+}
+
+.about img {
+    display: block;
+    max-height: 500px;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+}
+
+#mission-img {
+    float: left;
+    max-width: 400px;
+    margin-right: 2rem;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/*#mission-text {*/
+/*    float: right;*/
+/*    !*max-width: 400px;*!*/
+/*    !*margin-right: 2rem;*!*/
+/*}*/
+
 
 /*cart---------------------------------*/
 tr.htmx-swapping td {
