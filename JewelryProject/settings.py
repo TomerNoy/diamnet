@@ -132,6 +132,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
+AWS_ACCESS_KEY_ID = 'AKIAQRE6CKMQP3UPE2PL'
+AWS_SECRET_ACCESS_KEY = 'M1v-FTaqYZexNmC_aUbOManBUSuTgzcV-3YStjThPEeWjkssY4gZw6Eq2QhJSHg-9tAPk_10-fE7bSwM6G3pbw'
+AWS_STORAGE_BUCKET_NAME = 'diamnet-bucket'
+AWS_URL = 'https://diamnet-bucket.s3.amazonaws.com/'
+
+AWS_DEFAULT_ACL = None
+AWS_S3_REGION_NAME = 'us-east-2'
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+
+MEDIA_URL = AWS_URL + '/media/'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 try:
     from .local_settings import *
 except ImportError:
